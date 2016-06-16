@@ -1,0 +1,26 @@
+<ul id="topnav">
+    <li><a href="/movie">My首页</a></li>
+    <li>
+        <a href="/movie/list">列表页</a>
+    </li>
+    <li>
+        <a href="/movie/new">录入页</a>
+    </li>
+    <%if(user){%>
+        <li style="float:right">
+            <a href="/user/logout">登出</a>
+        </li>
+        <li style="float:right">
+            <a href="javascript:;">欢迎您，<%= user.username%></a>
+        </li>
+    <%}else{%>
+        <li style="float:right">
+            <a href="/user/register">注册</a>
+        </li>
+        <li style="float:right">
+            <a href="/user/login">登录</a>
+        </li>
+    <%}%>
+
+</ul>
+

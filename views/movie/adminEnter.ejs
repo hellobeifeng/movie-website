@@ -1,0 +1,171 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title> <%= title %></title>
+    <meta charset="utf-8"/>
+    <script src="/js/jquery.js" type="text/javascript"></script>
+    <link rel='stylesheet' href='/css/theme.css'/>
+    <link rel="stylesheet" href="/css/nav.css"/>
+    <style>
+        .form span {
+            display: inline-block;
+            float: left;
+            width: 100px;
+            text-align: right;
+        }
+
+        .right {
+            float: right;
+            text-align: left;
+            width: 500px;
+        }
+
+        .row {
+            height: 50px;
+            border-bottom: 1px solid #ccc;
+            line-height: 50px;
+        }
+
+        input {
+            color: blue;
+        }
+
+        textarea {
+            color: blue;
+        }
+
+        .form {
+            border: 2px solid #dfdfdf;
+            background-color: grey;
+            width: 1010px;
+            padding: 10px auto
+        }
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <% include ../common/nav %>
+    <div style="clear:both"></div>
+    <form class="form" action="/movie/new" method="post">
+        <div>
+            <div class='row'>
+                <span>ID：</span>
+
+                <div class='right'>
+                    <input value="<%= movie._id %>" id='douban' placeholder='例如输入：1764796'/>
+                </div>
+            </div>
+            <div class='row'>
+                <span>增加分类：</span>
+                <div class='right'>
+                    <input name="movie[categoryName]" value="<%= movie.categoryName %>" id='categoryName' placeholder='例如输入：战争题材'/>
+                </div>
+            </div>
+            <div class='row'>
+                <span>已有分类：</span>
+                <div class='right'>
+                    <%for(var k in categories){ var cat = categories[k];%>
+                        <input type="radio" name="movie[category]" value="<%= cat._id %>" id='categoryName' />&nbsp;<%= cat.name%>&nbsp;
+                    <% } %>
+                </div>
+            </div>
+            <div class='row'>
+                <span>标题：</span>
+
+                <div class='right'>
+                    <input name="movie[title]" value="<%= movie.title %>" id='inputTitle'/>
+                </div>
+            </div>
+            <div class='row'>
+                <span>导演：</span>
+
+                <div class='right'>
+                    <input name="movie[doctor]" value="<%= movie.doctor %>" id='inputDoctor'/>
+                </div>
+            </div>
+            <div class='row'>
+                <span>国家：</span>
+
+                <div class='right'>
+                    <input name="movie[country]" value="<%= movie.country %>" id='inputCountry'/>
+                </div>
+            </div>
+            <div class='row'>
+                <span>语种：</span>
+
+                <div class='right'>
+                    <input name="movie[language]" value="<%= movie.language %>" id='inputLanguage'/>
+                </div>
+            </div>
+            <div class='row'>
+                <span>海报：</span>
+
+                <div class='right'>
+                    <input name="movie[poster]" value="<%= movie.poster %>" id='inputPoster'/>
+                </div>
+            </div>
+            <div class='row'>
+                <span>年份：</span>
+
+                <div class='right'>
+                    <input name="movie[year]" value="<%= movie.year %>" id='inputYear'/>
+                </div>
+            </div>
+            <div class='row'>
+                <span>播放地址：</span>
+
+                <div class='right'>
+                    <input name="movie[flash]" value="<%= movie.flash %>" id='inputFlash'/>
+                </div>
+            </div>
+            <div style="height:200px;">
+                <span style="display:inline-block;height:200px;line-height:200px;">简介：</span>
+
+                <div class='right'>
+                    <textarea name="movie[summary]" value="<%= movie.summary %>" id='inputSummary' cols='20'
+                              rows='10'></textarea>
+                </div>
+            </div>
+        </div>
+        <div class='row' style="text-align:center;clear:top">
+            <input type="submit" value="提交"/>
+        </div>
+    </form>
+    <div style="clear:both"></div>
+    <% include ../common/footer.ejs %>
+</div>
+
+
+</body>
+<script>
+    $(function () {
+        //https://api.douban.com/v2/movie/subject/
+        $('#douban').blur(function () {
+            var douban = $(this);
+            var id = douban.val();
+
+            if (id) {
+                $.ajax({
+                    url: 'https://api.douban.com/v2/movie/subject/' + id,
+                    type: 'get',
+                    dataType: 'jsonp',
+                    crossDomain: true,
+                    jsonp: 'callback',
+                    success: function (data) {
+                        $('#inputTitle').val(data.title);
+                        $('#inputDoctor').val(data.directors[0].name);
+                        $('#inputCountry').val(data.countries[0]);
+
+                        $('#inputPoster').val(data.images.large);
+                        $('#inputYear').val(data.year);
+                        $('#inputSummary').val(data.summary);
+                        $('#inputFlash').val(data.clip_urls[0]);
+                        $('#inputLanguage').val(data.languages[0]);
+                    }
+                })
+            }
+        })
+    })
+</script>
+</html>

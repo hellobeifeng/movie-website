@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title> <%= title %></title>
+    <meta charset="utf-8"/>
+    <script src="/js/jquery.js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel='stylesheet' href='/css/theme.css'/>
+    <link rel="stylesheet" href="/css/nav.css"/>
+</head>
+<body>
+<div class="container">
+    <% include ../common/nav%>
+    <div style="clear:both"></div>
+    <div  style="width:1010px;">
+        <table style="width:100%" class="allBorder">
+            <tr style="height:45px;text-align: center">
+                <th>名字</th>
+                <th>查看</th>
+                <th>更新</th>
+                <th>删除</th>
+            </tr>
+            <% if(users.length){ %>
+              <% for(var i in users){ var user = users[i] %>
+                <tr style="height:45px;text-align: center" class="item-id-<%= user._id %>">
+                    <td><%= user.username %></td>
+
+                    <td>
+                        <a href='/movie/detail/<%= user._id %>'>查看</a>
+                    </td>
+                    <td>
+                        <a href="/movie/update/<%= user._id %>">更新</a>
+                    </td>
+                    <td>
+                        <a class="del" data-id="<%= user._id%>">删除</a>
+                    </td>
+                </tr>
+              <% } %>
+            <% } %>
+        </table>
+    </div>
+    <% include ../common/footer.ejs%>
+</div>
+</body>
+<script>
+    $(function(){
+        $('.del').on('click', function(){
+            var $a = $(this);
+
+            var id = $a.attr('data-id');
+
+            var parent = $a.closest('tr');
+
+            $.ajax({
+                type: 'DELETE',
+                url: '/movie/list?id=' + id
+            }).done(function(ret){
+                if(ret.code == 0){
+                    parent.remove();
+                }
+            })
+        });
+    })
+</script>
+</html>

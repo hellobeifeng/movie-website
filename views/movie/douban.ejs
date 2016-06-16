@@ -1,0 +1,113 @@
+ <!DOCTYPE HTML>
+<html>
+<head>
+  <title> 使用ajax请求豆瓣开发者API接口电影数据 </title>
+   <meta charset="utf-8"/>
+   <script src="jquery.js" type="text/javascript"></script>
+   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+   <style>
+    span{
+      display:inline-block;
+      float: left;
+      width:200px;
+      text-align: right;
+    }
+    .right{
+      float:right;
+      text-align:left;
+      width:300px;
+    }
+    .row{
+      height:50px;
+      border-bottom:1px solid #ccc;
+      line-height:50px;
+    }
+    input {
+      color:blue;
+    }
+    textarea{
+      color:blue;
+    }
+   </style>
+
+</head>
+<body>
+       <form style="border:2px solid #dfdfdf;background-color:grey;width:600px;height:650px;padding:10px auto">
+        <div style="border-bottom:1px solid #ccc">
+          <h2 style="text-align:center">通过JSONP协议请求豆瓣开发者API接口电影数据</h2>
+        </div>
+        <div >
+          <div class='row'>
+            <span>ID：</span>
+            <div class='right'>
+              <input id='douban' placeholder='例如输入：1764796'/>
+            </div>
+          </div>
+          <div class='row'>
+            <span>标题：</span>
+            <div class='right'>
+                <input id='inputTitle'/>
+            </div>
+          </div>
+          <div class='row'>
+            <span>导演：</span>
+            <div class='right'>
+                <input id='inputDoctor'/>
+            </div>
+          </div>
+          <div class='row'>
+            <span>国家：</span>
+            <div class='right'>
+                <input id='inputCountry'/>
+            </div>
+          </div>
+          <div class='row'>
+            <span>海报：</span>
+            <div class='right'>
+                <input id='inputPoster'/>
+            </div>
+          </div>
+          <div class='row'>
+            <span>年份：</span>
+            <div class='right'>
+                <input id='inputYear'/>
+            </div>
+          </div>
+          <div style="padding-top:15px;">
+            <span >简介：</span>
+            <div class='right'>
+                <textarea id='inputSummary' rows="10" cols="30"></textarea>
+            </div>
+          </div>         
+        </div>
+          
+       </form> 
+</body>
+<script>
+  $(function() {
+    //https://api.douban.com/v2/movie/subject/
+    $('#douban').blur(function() {
+      var douban = $(this);
+      var id = douban.val();
+
+      if (id) {
+        $.ajax({
+          url: 'https://api.douban.com/v2/movie/subject/' + id,
+          type: 'get',
+          dataType: 'jsonp',
+          crossDomain: true,
+          jsonp: 'callback',
+          success: function(data) {
+            $('#inputTitle').val(data.title);
+            $('#inputDoctor').val(data.directors[0].name);
+            $('#inputCountry').val(data.countries[0]);
+            $('#inputPoster').val(data.images.large);
+            $('#inputYear').val(data.year);
+            $('#inputSummary').val(data.summary);
+          }
+        })
+      }
+    })
+  })
+</script>
+</html>

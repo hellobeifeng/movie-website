@@ -1,0 +1,24 @@
+{
+  "name": "mongoo",
+  "version": "0.0.1",
+  "description": "a test for mongoo",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "FENG",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "connect-mongo": "^0.8.2",//使用connect需要将node version升至4.2 然后connect-mongo版本确定为0.8.2
+    "cookie-parser": "^1.4.0",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "express-session": "^1.12.1",
+    "mongoose": "^4.2.9",
+    "path": "^0.12.7",
+    "request": "^2.67.0",
+    "underscore": "^1.8.3",
+    "when": "^3.7.5"
+  }
+}

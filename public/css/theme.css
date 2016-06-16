@@ -1,0 +1,63 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,legend,button,form,fieldset,input,textarea,p,blockquote,th,td {padding:0; margin:0;}
+ul,li{ list-style-type:none;}
+img{ border:none;}
+a{text-decoration:none; cursor:pointer; outline:none;}
+a:hover{text-decoration:none;}
+a:focus{outline:none;}
+.h50{
+    height:50px;
+}
+.lrp30{
+    padding-left:30px;
+    padding-right:30px;
+}
+.lrp80{
+    padding-left:80px;
+    padding-right:80px;
+}
+.tpp20{
+    padding-top:20px;
+    padding-bottom: 20px;
+}
+
+.fl{
+    float:left
+}
+.fr{
+    float:right
+}
+.commView{
+    width:100%;
+    background:#ffffff
+}
+.allBorder{
+    border:1px solid #dfdfdf;
+}
+.bottomBorder{
+    border-bottom: 1px solid #dfdfdf
+}
+.topBorder{
+    border-top: 1px solid #dfdfdf;
+}
+.container {width: 1010px; margin: 0 auto;}
+.form-row{
+    margin-bottom: 0px;
+    margin-top: 10px;
+    width: 100%;
+    height: 42px;
+    line-height: 42px;
+}
+
+.hl_20{
+    height:20px;
+    line-height:20px;
+}
+.mt_20{
+    margin-top:20px;
+}
+.mb_20{
+    margin-bottom:20px;
+}
+.clearB{
+    clear:both;
+}

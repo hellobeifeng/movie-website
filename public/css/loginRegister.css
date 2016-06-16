@@ -1,0 +1,78 @@
+form{
+    margin:0 auto;
+    width:500px;
+    height:200px;
+}
+.form-row label{
+    float:left;
+    height:20px;
+    line-height:20px;
+    width: 200px;
+    text-align: center;
+}
+.form-row input{
+    float:left;
+    height:20px;
+    line-height:20px;
+    width: auto;
+    text-align: left;
+}
+.formButton{
+    margin-top:10px;
+    padding-right:20px;
+    text-align:right;
+}
+.formButton input{
+    margin:0 auto;
+    text-align: left;
+}
+a.loginButton {
+    font-size: 12px;
+    background: #fff no-repeat 4px 5px;
+    display: inline-block;
+    padding: 5px 20px 6px;
+    color: #333;
+    border:1px solid #ccc;
+    text-decoration: none;
+    font-weight: bold;
+    line-height: 1.2em;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-box-shadow: 0 1px 3px #999;
+    -webkit-box-shadow: 0 1px 3px #999;
+    position: relative;
+    cursor: pointer;
+    outline:none;
+}
+
+a.loginButton:visited {}
+
+a.loginButton:hover {
+    border:1px solid #333;
+}
+a.registerButton {
+    font-size: 12px;
+    background: #fff no-repeat 4px 5px;
+    display: inline-block;
+    padding: 5px 20px 6px;
+    color: #333;
+    border:1px solid #ccc;
+    text-decoration: none;
+    font-weight: bold;
+    line-height: 1.2em;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-box-shadow: 0 1px 3px #999;
+    -webkit-box-shadow: 0 1px 3px #999;
+    position: relative;
+    cursor: pointer;
+    outline:none;
+}
+
+a.registerButton:visited {}
+
+a.registerButton:hover {
+    border:1px solid #333;
+}
